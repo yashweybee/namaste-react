@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Contact = () => {
+
+
+    useEffect(() => {
+        console.log("UseEffect");
+    }, [])
+
+    console.log("render");
     return (
         <div>
             Contact

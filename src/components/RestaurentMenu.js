@@ -1,51 +1,49 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { MENU_API } from "../utils/constants";
+import useRestaurentMenu from "../utils/useRestaurentMenu";
+import RestaurentCategory from "./RestaurentCategory";
+import { useState } from "react";
 
 const RestaurentMenu = () => {
-    const [resInfo, setResInfo] = useState(null);
+
+    // for toggling between categories
+    const [showIndex, setShowIndex] = useState(null);
 
     const { resId } = useParams();
 
+    // custom hook-- feching data fom api
+    const resInfo = useRestaurentMenu(resId);
 
-    useEffect(() => {
-        fetchMenu();
-    }, []);
-
-    const fetchMenu = async () => {
-        const data = await fetch(MENU_API + resId);
-
-        const jsonData = await data.json();
-
-        setResInfo(jsonData?.data);
-
-    }
     if (resInfo == null) return <Shimmer />
-
 
     const { name, cuisines, costForTwoMessage, avgRatingString } = resInfo?.cards[0]?.card?.card?.info;
     const itemCards = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
-    console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card);
+    console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+    const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+        .filter(c => c?.card?.card?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
     return (
-        <div className="menu">
-            <h1>{name}</h1>
-            <h3>{cuisines.join(", ")}</h3>
-            <h3>{costForTwoMessage}</h3>
-            <h4>{avgRatingString} stars</h4>
+        <div >
+            <div className=" text-center">
+                <h1 className="font-bold mt-8 text-3xl">{name}</h1>
+                <h3 className="font-semibold my-5 text-xl">{cuisines.join(", ")}</h3>
+                <h3 className="p-2 bg-yellow-500 inline rounded">{costForTwoMessage}</h3>
+                <h4 className="p-2 mx-3 bg-green-500 inline rounded">{avgRatingString} stars</h4>
+            </div>
 
-            <h2>Menu:</h2>
+            {categories.map((category, index) => (
+                <RestaurentCategory
+                    showItems={index === showIndex ? true : false}
+                    setShowIndex={() => {
+                        showIndex !== index ?
+                            setShowIndex(index) : setShowIndex(null)
+                    }}
+                    key={category?.card?.card?.title}
+                    data={category}
+                />
+            ))}
 
-            <ul>
-                {itemCards.map((item) =>
-                    <li
-                        key={item?.card?.info?.id}>
-                        {item?.card?.info?.name} - {"Rs. "}  {item?.card?.info?.price / 100 || item?.card?.info?.defaultPrice / 100}
-                    </li>
-                )}
-
-            </ul>
 
         </div>
     )

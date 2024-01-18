@@ -1,36 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import User from "./User";
 import UserClass from "./UserClass";
 
-class About extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log("parent const")
-    }
+// class About extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
 
-    componentDidMount() {
-        console.log("parent com. did mount");
-    }
+//     render() {
+//         return (
+//             <div>
+//                 <h1>About Us</h1>
+//                 <h3>Our Team:</h3>
+//                 {/* <UserClass /> */}
+//                 <User />
 
-    render() {
-        console.log("Parent Render");
-
-        return (
-            <div>
-                <h1>About Us</h1>
-                <h3>Our Team:</h3>
-                {/* <User name={"Yash Parmar"} location={"Rajkot"} /> */}
-                <UserClass name={"Yash Parmar"} location={"Rajkot"} />
-                <UserClass name={"Ravi Aajugiya"} location={"Vadodara"} />
-            </div>
-        )
-    }
-}
+//             </div>
+//         )
+//     }
+// }
 
 /**
  * parnt const
  * parent rend
- * parent did...
  * Yash child const
  * yash child render
  * yash did
@@ -42,15 +34,15 @@ class About extends React.Component {
  * 
  */
 
-// const About = () => {
-//     return (
-//         <div>
-//             <h1>About Us</h1>
-//             <h3>Our Team:</h3>
-//             <User name={"Yash Parmar"} location={"Rajkot"} />
-//             <UserClass name={"Ravi Aajugiya"} location={"Vadodara"} />
-//         </div>
-//     )
-// }
+const About = () => {
+    return (
+        <div>
+            <h1>About Us</h1>
+            <h3>Our Team:</h3>
+            <User />
+            {/* <UserClass name={"Ravi Aajugiya"} location={"Vadodara"} /> */}
+        </div>
+    )
+}
 
 export default About;

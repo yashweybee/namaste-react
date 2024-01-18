@@ -1,0 +1,15 @@
+Role based auth
+1.Create app
+2.Create Database
+3. appsettings.json file => modify db connection
+4.in Areas folder-> Add -> New Scaffold Item -> Identity -> select all option / required
+5.Package manager console -> update-database.
+shimmer UI
+
+    const [btnName, setBtnName] = useState("Login");
+	why const value updating??
+	
+-- async componenetDidMount() ??????????
+-- Why cant i use async in useEffect() ??????????
+-- Lifting the state up in react
+-- Prop drilling
