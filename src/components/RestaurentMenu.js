@@ -7,7 +7,7 @@ import { useState } from "react";
 const RestaurentMenu = () => {
 
     // for toggling between categories
-    const [showIndex, setShowIndex] = useState(null);
+    const [showIndex, setShowIndex] = useState(0);
 
     const { resId } = useParams();
 

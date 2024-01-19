@@ -13,3 +13,5 @@ shimmer UI
 -- Why cant i use async in useEffect() ??????????
 -- Lifting the state up in react
 -- Prop drilling
+-- RTK Query
+-- Immer ==> redux uses this to mutate state..
