@@ -1,9 +1,10 @@
 import RestaurentCard, { nonvegRestaurent } from "./RestaurentCard";
 import resList from "../utils/mockData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 let actualData = [];
 
@@ -13,6 +14,8 @@ const Body = () => {
     const [listOfRestaurent, setlistOfRestaurent] = useState([]);
     const [filteredRes, setFilteredRes] = useState([]);
     const [searchText, setSearchText] = useState("");
+
+    const { setUserName, loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         fetchData();
@@ -66,6 +69,16 @@ const Body = () => {
                         setFilteredRes(listOfRestaurent);
 
                     }}>All Restaurent</button>
+                </div>
+                <div>
+                    <label>User Name</label>
+                    <input
+                        type="text"
+                        className="border border-slate-300 rounded-md px-3 py-2"
+                        value={loggedInUser} onChange={
+                            (e) => {
+                                setUserName(e.target.value);
+                            }}></input>
                 </div>
             </div>
 
