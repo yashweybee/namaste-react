@@ -1,9 +1,3 @@
-Role based auth
-1.Create app
-2.Create Database
-3. appsettings.json file => modify db connection
-4.in Areas folder-> Add -> New Scaffold Item -> Identity -> select all option / required
-5.Package manager console -> update-database.
 shimmer UI
 
     const [btnName, setBtnName] = useState("Login");
@@ -15,3 +9,5 @@ shimmer UI
 -- Prop drilling
 -- RTK Query
 -- Immer ==> redux uses this to mutate state..
+
+-- Parcel website bable docs
