@@ -7,7 +7,7 @@ import { useState } from "react";
 const RestaurentMenu = () => {
 
     // for toggling between categories
-    const [showIndex, setShowIndex] = useState(0);
+    const [showIndex, setShowIndex] = useState(null);
 
     const { resId } = useParams();
 
@@ -18,7 +18,7 @@ const RestaurentMenu = () => {
 
     const { name, cuisines, costForTwoMessage, avgRatingString } = resInfo?.cards[0]?.card?.card?.info;
     const itemCards = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
-    console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+    // console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
     const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
         .filter(c => c?.card?.card?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");

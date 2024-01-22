@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
 
 const Contact = () => {
-
-
-    useEffect(() => {
-        console.log("UseEffect");
-    }, [])
-
-    console.log("render");
     return (
         <div>
-            Contact
+            <h1 className='text-center'>Contact Us</h1>
+            <input placeholder='name' className='border border-black rounded p-2 m-2' />
+            <input placeholder='email' className='border border-black rounded p-2 m-2' />
+            <button className='border border-black rounded p-2 m-2'>Send</button>
         </div>
     )
 }
